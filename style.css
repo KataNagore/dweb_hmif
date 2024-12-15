@@ -1,0 +1,413 @@
+/* styles.css */
+
+
+/* Initially hide the card-text */
+.card-text {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;  /* Prevent content overflow */
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Smooth transition for both */
+}
+
+/* When hovering over the card, show the card-text with smooth transition */
+.card:hover .card-text {
+    max-height: 1000px;  /* Set to a large value to show the content */
+    opacity: 1;  /* Fade in the text */
+}
+
+#home {
+    position: relative;
+    background-image: url('ief.jpeg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Optional, for a parallax effect */
+    height: 100vh; /* Full viewport height */
+    color: white; /* Make text readable on the background */
+    transition: background-image 0.5s ease-in-out; /* Smooth transition for background image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Darken the background using ::before pseudo-element */
+#home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+    z-index: 1; /* Ensure it stays above the background image but below the text */
+    transition: background 0.5s ease-in-out; /* Smooth transition for the overlay */
+}
+
+/* Change the background image and darken overlay when hovering */
+#home:hover {
+    background-image: url('ief-hover.JPG');
+}
+
+#home:hover::before {
+    background: rgba(0, 0, 0, 0.6); /* Darker overlay on hover */
+}
+
+#home .container {
+    position: relative;
+    z-index: 2; /* Ensure the text stays above the overlay */
+    height: 100%; /* Ensure the container takes up full height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+:root {
+  --glow-color: hsl(186 100% 69%);
+}
+
+.glowing-btn {
+    position: relative;
+    color: var(--glow-color);
+    cursor: pointer;
+    padding: 0.35em 1em;
+    border: 0.15em solid var(--glow-color);
+    border-radius: 0.45em;
+    background: none;
+    perspective: 2em;
+    font-family: "Raleway", sans-serif;
+    font-size: 1.2em;  /* Adjusted font size for a smaller button */
+    font-weight: 900;
+    letter-spacing: 0.5em;  /* Adjusted for better readability */
+    display: inline-block;
+    margin: 0 auto;  /* Center the button horizontally */
+  
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+      0px 0px 0.5em 0px var(--glow-color);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+      0px 0px 0.5em 0px var(--glow-color);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+      0px 0px 0.5em 0px var(--glow-color);
+    animation: border-flicker 2s linear infinite;
+  }
+  
+.glowing-txt {
+    float: left;
+    margin-right: -0.8em;
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+      0 0 0.45em var(--glow-color);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+      0 0 0.45em var(--glow-color);
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+    animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter {
+    opacity: 0.5;
+    animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+    filter: blur(1em);
+    transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+    background: var(--glow-color);
+    pointer-events: none;
+}
+
+.glowing-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: -1;
+    background-color: var(--glow-color);
+    box-shadow: 0 0 2em 0.2em var(--glow-color);
+    transition: opacity 100ms linear;
+}
+
+.glowing-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+    text-shadow: none;
+    animation: none;
+}
+
+.glowing-btn:hover .glowing-txt {
+    animation: none;
+}
+
+.glowing-btn:hover .faulty-letter {
+    animation: none;
+    text-shadow: none;
+    opacity: 1;
+}
+
+.glowing-btn:hover:before {
+    filter: blur(1.5em);
+    opacity: 1;
+}
+
+.glowing-btn:hover:after {
+    opacity: 1;
+}
+
+@keyframes faulty-flicker {
+    0% {
+      opacity: 0.1;
+    }
+    2% {
+      opacity: 0.1;
+    }
+    4% {
+      opacity: 0.5;
+    }
+    19% {
+      opacity: 0.5;
+    }
+    21% {
+      opacity: 0.1;
+    }
+    23% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 0.5;
+    }
+    83% {
+      opacity: 0.4;
+    }
+    87% {
+      opacity: 1;
+    }
+}
+
+@keyframes text-flicker {
+    0% {
+      opacity: 0.1;
+    }
+    2% {
+      opacity: 1;
+    }
+    8% {
+      opacity: 0.1;
+    }
+    9% {
+      opacity: 1;
+    }
+    12% {
+      opacity: 0.1;
+    }
+    20% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 0.3;
+    }
+    30% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0.7;
+    }
+    72% {
+      opacity: 0.2;
+    }
+    77% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0.9;
+    }
+}
+
+@keyframes border-flicker {
+    0% {
+      opacity: 0.1;
+    }
+    2% {
+      opacity: 1;
+    }
+    4% {
+      opacity: 0.1;
+    }
+    8% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .glowing-btn {
+      font-size: 1em;  /* Adjusted font size for smaller screens */
+    }
+}
+
+
+.wrapper {
+    display: inline-flex;
+    list-style: none;
+  }
+  
+  .wrapper .icon {
+    position: relative;
+    background: #ffffff;
+    border-radius: 50%;
+    padding: 15px;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .tooltip {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    background: #ffffff;
+    color: #ffffff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #ffffff;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .icon:hover .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
+  .wrapper .icon:hover span,
+  .wrapper .icon:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .wrapper .email:hover,
+  .wrapper .email:hover .tooltip,
+  .wrapper .email:hover .tooltip::before {
+    background: #d7e5ee;
+    color: #ffffff;
+  }
+  
+  .wrapper .instagram:hover,
+  .wrapper .instagram:hover .tooltip,
+  .wrapper .instagram:hover .tooltip::before {
+    background: #E4405F;
+    color: #ffffff;
+  }
+  
+  .wrapper .whatsapp:hover,
+  .wrapper .whatsapp:hover .tooltip,
+  .wrapper .whatsapp:hover .tooltip::before {
+    background: #0f5b2b;
+    color: #ffffff;
+  }
+  
+/* Remove default link styling */
+.custom-link {
+    color: inherit;  /* Keep the color of the surrounding text */
+    text-decoration: none;  /* Remove the underline */
+}
+
+/* Optional: You can add hover effect if you want to */
+.custom-link:hover {
+    color: inherit;  /* Optional: change color on hover if needed */
+    text-decoration: none;  /* Remove underline on hover */
+}
+
+.button {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    overflow: hidden; /* If debug is false, it hides the overflow */
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 2em;
+    padding: 0.75em 1em;
+    color: rgba(0, 0, 0, 0.4); /* Using blue as the background color */
+    border: 0.15em solid black;
+    border-radius: calc(0.75em + 0.5em + 0.15em);
+    transition: 4s;
+}
+
+.button:before,
+.button:after {
+    content: '';
+    position: absolute;
+    top: -1.5em;
+    z-index: -1;
+    width: 200%;
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 40%;
+    background-color: rgba(0, 0, 0, 0.4); /* Blue color with transparency */
+    transition: 4s;
+}
+
+.button:before {
+    left: -80%;
+    transform: translate3d(0, 5em, 0) rotate(-340deg);
+}
+
+.button:after {
+    right: -80%;
+    transform: translate3d(0, 5em, 0) rotate(390deg);
+}
+
+.button:hover,
+.button:focus {
+    color: white; /* Change text color to white on hover */
+}
+
+.button:hover:before,
+.button:hover:after {
+    transform: none;
+    background-color: black; /* Change background color on hover */
+}
+
+#demo .carousel-inner .carousel-item img {
+    object-fit: cover; /* Ensures the image covers the entire area */
+    width: 100%; /* Make sure the image takes up the full width */
+    height: 600px; /* Set a fixed height */
+}
+
